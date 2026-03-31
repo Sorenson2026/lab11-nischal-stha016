@@ -12,8 +12,6 @@ const int SIZE = 100;
 
 // Function prototypes
 int readFile(const string& filename, double numbers[], int& count);
-double findLowest(double numbers[], int count);
-double findHighest(double numbers[], int count);
 void analyzeArray(double numbers[], int count);
 
 // Main function
@@ -47,48 +45,36 @@ int readFile(const string& filename, double numbers[], int& count)
 	return count;
 }
 
-// Function to find the lowest number in the array
-double findLowest(double numbers[], int count)
-{
-	double lowest = numbers[0];
-	for (int i = 1; i < count; i++)
-	{
-		if (numbers[i] < lowest)
-		{
-			lowest = numbers[i];
-		}
-	}
-	return lowest;
-}
-
-// Function to find the highest number in the array
-double findHighest(double numbers[], int count)
-{
-	double highest = numbers[0];
-	for (int i = 1; i < count; i++)
-	{
-		if (numbers[i] > highest)
-		{
-			highest = numbers[i];
-		}
-	}
-	return highest;
-}
+// Function to analyze the array and display lowest, highest, total, average and standard deviation
 
 void analyzeArray(double numbers[], int count)
 {
-	double lowest = findLowest(numbers, count);
-	double highest = findHighest(numbers, count);
-	/*double total = calculateTotal(numbers, count);
-	double average = calculateAverage(numbers, count);
-	double stddev = calculateStandardDeviation(numbers, count, average);
-
-	
-	
-	cout << "Total: " << total << endl;
-	cout << "Average: " << average << endl;
-	cout << "Standard Deviation: " << stddev << endl; */
+	if (count == 0)
+	{
+		cout << "No numbers to analyze." << endl;
+		return;
+	}
+	double lowest = numbers[0];
+	double highest = numbers[0];
+	double total = 0.0;
+	for (int i = 0; i < count; i++)
+	{
+		if (numbers[i] < lowest)
+			lowest = numbers[i];
+		if (numbers[i] > highest)
+			highest = numbers[i];
+		total += numbers[i];
+	}
+	double average = total / count;
+	double sumOfSquares = 0.0;
+	for (int i = 0; i < count; i++)
+	{
+		sumOfSquares += pow(numbers[i] - average, 2);
+	}
+	double standardDeviation = sqrt(sumOfSquares / count);
 	cout << "Lowest: " << lowest << endl;
 	cout << "Highest: " << highest << endl;
+	cout << "Total: " << total << endl;
+	cout << "Average: " << average << endl;
+	cout << "Standard Deviation: " << standardDeviation << endl;
 }
-
