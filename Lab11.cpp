@@ -40,6 +40,11 @@ int readFile(const string& filename, double numbers[], int& count)
 	while (file >> numbers[count])
 	{
 		count++;
+		if (count >= SIZE)
+		{
+			cerr << "Array size exceeded!" << endl;
+			break;
+		}
 	}
 	file.close();
 	return count;
@@ -65,6 +70,7 @@ void analyzeArray(double numbers[], int count)
 			highest = numbers[i];
 		total += numbers[i];
 	}
+	// Calculate average
 	double average = total / count;
 	double sumOfSquares = 0.0;
 	for (int i = 0; i < count; i++)
