@@ -20,6 +20,7 @@ int main()
 	double numbers[SIZE];
 	int count;
 	string filename;
+	cout << "Hello there, welcome to the program that reads numbers from a file and analyzes them." << endl;
 	cout << "Enter the file name: ";
 	cin >> filename;
 	readFile(filename, numbers, count);
